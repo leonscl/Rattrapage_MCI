@@ -43,6 +43,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\Card.cs" />
+    <Compile Include="Model\CustomerGroup.cs" />
+    <Compile Include="Model\HeadWaiter.cs" />
+    <Compile Include="Model\RankChief.cs" />
+    <Compile Include="Model\Room.cs" />
+    <Compile Include="Model\RoomClerk.cs" />
+    <Compile Include="Model\Square.cs" />
+    <Compile Include="Model\StockRoom.cs" />
+    <Compile Include="Model\Table.cs" />
+    <Compile Include="Model\Waiter.cs" />
+    <Compile Include="Model\WaitingLine.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
