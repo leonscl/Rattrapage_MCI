@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rattrapage_MCI", "Rattrapage_MCI\Rattrapage_MCI.csproj", "{AA813F50-A745-4BA2-AFF3-D691544074FC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rattrapage_MCI_salle", "Rattrapage_MCI\Rattrapage_MCI_salle.csproj", "{AA813F50-A745-4BA2-AFF3-D691544074FC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rattrapage_MCI_cuisine", "Rattrapage_MCI_cuisine\Rattrapage_MCI_cuisine.csproj", "{85BC30EA-7A47-4F96-9315-D586CC6EA7F9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{AA813F50-A745-4BA2-AFF3-D691544074FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AA813F50-A745-4BA2-AFF3-D691544074FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AA813F50-A745-4BA2-AFF3-D691544074FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{85BC30EA-7A47-4F96-9315-D586CC6EA7F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{85BC30EA-7A47-4F96-9315-D586CC6EA7F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{85BC30EA-7A47-4F96-9315-D586CC6EA7F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{85BC30EA-7A47-4F96-9315-D586CC6EA7F9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
