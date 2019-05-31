@@ -43,8 +43,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="Assiette.cs" />
+    <Compile Include="ChefCuisine.cs" />
+    <Compile Include="CommisCuisine.cs" />
+    <Compile Include="ChefPartie.cs" />
+    <Compile Include="Couvert.cs" />
+    <Compile Include="Fourniture.cs" />
+    <Compile Include="MaterielCommun.cs" />
+    <Compile Include="Plat.cs" />
+    <Compile Include="Plongeur.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TypeAssiette.cs" />
+    <Compile Include="TypeCouvert.cs" />
+    <Compile Include="TypeVerre.cs" />
+    <Compile Include="Verre.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

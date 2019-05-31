@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Rattrapage_MCI_cuisine
 {
-    class Program
+    public enum TypeVerre
     {
-        static void Main(string[] args)
-        {
-        }
+        verre_eau,
+        verre_vin,
+        verre_champagne
     }
 }
