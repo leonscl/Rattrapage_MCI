@@ -8,7 +8,10 @@ namespace Rattrapage_MCI_cuisine
 {
     class ChefPartie
     {
-        public void PrepareMet() { }
+        public void PrepareEntree() {
+            Plat entree = new Plat();
+            MaterielCommun.AssiettesPetites.Total = this.total - 1;
+        }
         public void PreparerEnAvance() { }
 
         ChefPartie ChefPartie1 = new ChefPartie();

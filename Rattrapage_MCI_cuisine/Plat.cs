@@ -6,10 +6,7 @@ using System.Threading.Tasks;
 
 namespace Rattrapage_MCI_cuisine
 {
-    public enum TypeVerre
+    class Plat
     {
-        verre_eau,
-        verre_vin,
-        verre_champagne
     }
 }

@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Rattrapage_MCI_cuisine
 {
-    class TypeCouvert
+    public enum TypeCouvert
     {
+        fourchette,
+        couteau,
+        cuilliereCafe
     }
 }
