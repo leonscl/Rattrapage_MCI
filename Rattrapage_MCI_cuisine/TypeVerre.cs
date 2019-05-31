@@ -6,10 +6,7 @@ using System.Threading.Tasks;
 
 namespace Rattrapage_MCI_cuisine
 {
-    class Program
+    class TypeVerre
     {
-        static void Main(string[] args)
-        {
-        }
     }
 }
