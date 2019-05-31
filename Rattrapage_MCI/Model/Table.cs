@@ -13,6 +13,7 @@ namespace Rattrapage_MCI.Model
 
         private int numberPlace;
         private bool occupied;
+        //private bool needCleaning;
 
         private int bread;
         private int bottle;

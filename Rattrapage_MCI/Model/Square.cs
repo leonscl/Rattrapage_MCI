@@ -20,7 +20,7 @@ namespace Rattrapage_MCI.Model
         {
             IdSquare = id;
 
-            this.RankChief = new RankChief();
+            RankChief = new RankChief();
 
             Table table1 = new Table(2);
             Table table2 = new Table(4);
@@ -28,17 +28,15 @@ namespace Rattrapage_MCI.Model
             Table table4 = new Table(10);
 
             Tables = new List<Table>();
-
             Tables.Add(table1);
             Tables.Add(table2);
             Tables.Add(table3);
             Tables.Add(table4);
 
-            Waiters = new List<Waiter>();
-
             Waiter waiter1 = new Waiter();
             Waiter waiter2 = new Waiter();
 
+            Waiters = new List<Waiter>();
             Waiters.Add(waiter1);
             Waiters.Add(waiter2);
         }

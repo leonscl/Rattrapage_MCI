@@ -46,6 +46,7 @@
     <Compile Include="Model\Card.cs" />
     <Compile Include="Model\CustomerGroup.cs" />
     <Compile Include="Model\HeadWaiter.cs" />
+    <Compile Include="Model\Order.cs" />
     <Compile Include="Model\RankChief.cs" />
     <Compile Include="Model\Room.cs" />
     <Compile Include="Model\RoomClerk.cs" />
