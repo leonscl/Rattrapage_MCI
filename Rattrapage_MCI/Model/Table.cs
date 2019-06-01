@@ -8,6 +8,7 @@ namespace Rattrapage_MCI.Model
 {
     class Table
     {
+        //propriétés
         private int idTable;
         private static int idIncrementor = 0;
 
@@ -20,6 +21,7 @@ namespace Rattrapage_MCI.Model
 
         private CustomerGroup customerGroup = null;
 
+        //constructeur
         public Table(int placenumber)
         {
 
@@ -32,8 +34,10 @@ namespace Rattrapage_MCI.Model
             Bread = 0;
             Bottle = 0;
 
+            Console.WriteLine("Table " + IdTable + " disponible.");
         }
 
+        //getter et setter
         public int IdTable { get => idTable; set => idTable = value; }
         public static int IdIncrementor { get => idIncrementor; set => idIncrementor = value; }
         public int NumberPlace { get => numberPlace; set => numberPlace = value; }

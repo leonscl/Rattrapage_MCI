@@ -9,6 +9,8 @@ namespace Rattrapage_MCI.Model
 {
     class CustomerGroup
     {
+
+        //Propriétés
         private int idCustomer;
         private static int idCustomerTrack = 0;
 
@@ -18,22 +20,23 @@ namespace Rattrapage_MCI.Model
         private Table table = null;
 
         //Constructeur
-        public CustomerGroup(int numberCustomers)
+        public CustomerGroup()
         {
-            IdCustomer = idCustomerTrack;
-            idCustomerTrack++;
-
-            CustomerNumber = numberCustomers;
+            IdCustomer = IdCustomerTrack;
+            
+            Random rand = new Random();
+            CustomerNumber = rand.Next(2, 11);
 
             groupThread = new Thread(CustomerGroupThread);
             groupThread.Start();
-            Console.WriteLine("Thread Group de clients");
 
+            IdCustomerTrack++;
         }
 
         //thread du Groupe de clients
         public static void CustomerGroupThread()
         {
+            Console.WriteLine("Thread Group de clients " + IdCustomerTrack);
             while (true)
             {
 
@@ -41,8 +44,10 @@ namespace Rattrapage_MCI.Model
 
         }
 
+        //getter et setter
         public int CustomerNumber { get => customerNumber; set => customerNumber = value; }
         public int IdCustomer { get => idCustomer; set => idCustomer = value; }
         internal Table Table { get => table; set => table = value; }
+        public static int IdCustomerTrack { get => idCustomerTrack; set => idCustomerTrack = value; }
     }
 }

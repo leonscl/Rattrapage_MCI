@@ -8,6 +8,8 @@ namespace Rattrapage_MCI.Model
 {
     class Square
     {
+
+        //propriétés
         int idSquare;
 
         private List<Table> tables;
@@ -16,6 +18,7 @@ namespace Rattrapage_MCI.Model
 
         private List<Waiter> waiters;
 
+        //constructeur
         public Square(int id)
         {
             IdSquare = id;
@@ -39,8 +42,11 @@ namespace Rattrapage_MCI.Model
             Waiters = new List<Waiter>();
             Waiters.Add(waiter1);
             Waiters.Add(waiter2);
+
+            Console.WriteLine("Carré " + IdSquare + " ouvert.");
         }
 
+        //getter et setter
         public int IdSquare { get => idSquare; set => idSquare = value; }
         internal RankChief RankChief { get => rankChief; set => rankChief = value; }
         internal List<Waiter> Waiters { get => waiters; set => waiters = value; }

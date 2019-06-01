@@ -9,6 +9,7 @@ namespace Rattrapage_MCI.Model
     class Card
     {
 
+        //Propriétés
         private int cardQuantity;
 
         private List<string> entriees;
@@ -24,8 +25,10 @@ namespace Rattrapage_MCI.Model
             plats = new List<string> { "tagliatelles carbonara", "steack", "poulet roti" };
             deserts = new List<string> { "creme brulée", "glace vanille", "tarte tatin" };
 
+            Console.WriteLine("Cartes initialisées");
         }
 
+        //getter et setter
         public int CardQuantity { get => cardQuantity; set => cardQuantity = value; }
         public List<string> Entriees { get => entriees; set => entriees = value; }
         public List<string> Plats { get => plats; set => plats = value; }
