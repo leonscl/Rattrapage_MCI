@@ -43,7 +43,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\Actions.cs" />
     <Compile Include="Model\Card.cs" />
+    <Compile Include="Model\CounterDishes.cs" />
+    <Compile Include="Model\CounterOrder.cs" />
+    <Compile Include="Model\CounterPlate.cs" />
     <Compile Include="Model\CustomerGroup.cs" />
     <Compile Include="Model\HeadWaiter.cs" />
     <Compile Include="Model\Order.cs" />

@@ -18,17 +18,18 @@ namespace Rattrapage_MCI.Model
 
         private List<Waiter> waiters;
 
+        //private List<Actions> toDoRankChief = null;
+        private List<Actions> toDoWaiter = null;
+
         //constructeur
         public Square(int id)
         {
             IdSquare = id;
 
-            RankChief = new RankChief();
-
-            Table table1 = new Table(2);
-            Table table2 = new Table(4);
-            Table table3 = new Table(8);
-            Table table4 = new Table(10);
+            Table table1 = new Table(2, this);
+            Table table2 = new Table(4, this);
+            Table table3 = new Table(8, this);
+            Table table4 = new Table(10, this);
 
             Tables = new List<Table>();
             Tables.Add(table1);
@@ -36,12 +37,17 @@ namespace Rattrapage_MCI.Model
             Tables.Add(table3);
             Tables.Add(table4);
 
+            RankChief = new RankChief();
+
             Waiter waiter1 = new Waiter();
             Waiter waiter2 = new Waiter();
 
             Waiters = new List<Waiter>();
             Waiters.Add(waiter1);
             Waiters.Add(waiter2);
+
+            //ToDoRankChief = new List<Actions>();
+            ToDoWaiter = new List<Actions>();
 
             Console.WriteLine("Carré " + IdSquare + " ouvert.");
         }
@@ -51,5 +57,7 @@ namespace Rattrapage_MCI.Model
         internal RankChief RankChief { get => rankChief; set => rankChief = value; }
         internal List<Waiter> Waiters { get => waiters; set => waiters = value; }
         internal List<Table> Tables { get => tables; set => tables = value; }
+        //internal List<Actions> ToDoRankChief { get => toDoRankChief; set => toDoRankChief = value; }
+        internal List<Actions> ToDoWaiter { get => toDoWaiter; set => toDoWaiter = value; }
     }
 }

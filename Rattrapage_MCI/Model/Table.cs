@@ -20,11 +20,12 @@ namespace Rattrapage_MCI.Model
         private int bottle;
 
         private CustomerGroup customerGroup = null;
+        private Square theSquare;
 
         //constructeur
-        public Table(int placenumber)
+        public Table(int placenumber, Square square)
         {
-
+            theSquare = square;
             IdTable = IdIncrementor;
             IdIncrementor++;
 
@@ -45,7 +46,6 @@ namespace Rattrapage_MCI.Model
         public int Bread { get => bread; set => bread = value; }
         public int Bottle { get => bottle; set => bottle = value; }
         internal CustomerGroup CustomerGroup { get => customerGroup; set => customerGroup = value; }
-
-
+        internal Square TheSquare { get => theSquare; set => theSquare = value; }
     }
 }

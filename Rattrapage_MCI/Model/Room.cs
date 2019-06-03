@@ -13,30 +13,40 @@ namespace Rattrapage_MCI.Model
         private Square square2;
 
         private RoomClerk roomClerk;
+        private static List<string> toDoRoomClerk = null;
 
         private HeadWaiter headWaiter;
 
         private WaitingLine waitLine;
+        private Card card;
+        private StockRoom stockRoom;
 
         private static Room instance;
         private static readonly object padlock = new object();
 
+        private CounterOrder counterOrder;
+        private CounterPlate counterPlate;
+        private CounterDishes counterDishes;
 
         //constructeur
         public Room()
         {
+            StockRoom = new StockRoom(40, 40);
+            Card = new Card(40);
+            CounterOrder = new CounterOrder();
+
             Square1 = new Square(1);
             Square2 = new Square(2);
 
             RoomClerk = new RoomClerk();
-
-            Console.WriteLine("Salle ouverte");
+            ToDoRoomClerk = new List<string>();
 
             HeadWaiter = new HeadWaiter();
 
+            Console.WriteLine("Salle ouverte");
+
             waitLine = new WaitingLine();
 
-            Console.WriteLine("Tout est pret");
         }
 
         public static Room Instance
@@ -63,5 +73,11 @@ namespace Rattrapage_MCI.Model
         internal Square Square2 { get => square2; set => square2 = value; }
         internal HeadWaiter HeadWaiter { get => headWaiter; set => headWaiter = value; }
         internal WaitingLine WaitLine { get => waitLine; set => waitLine = value; }
+        public static List<string> ToDoRoomClerk { get => toDoRoomClerk; set => toDoRoomClerk = value; }
+        internal Card Card { get => card; set => card = value; }
+        internal StockRoom StockRoom { get => stockRoom; set => stockRoom = value; }
+        internal CounterOrder CounterOrder { get => counterOrder; set => counterOrder = value; }
+        internal CounterPlate CounterPlate { get => counterPlate; set => counterPlate = value; }
+        internal CounterDishes CounterDishes { get => counterDishes; set => counterDishes = value; }
     }
 }

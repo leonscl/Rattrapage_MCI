@@ -17,7 +17,6 @@ namespace Rattrapage_MCI.Model
         //constructeur
         public RoomClerk()
         {
-            StockRoom = new StockRoom(40, 40);
 
             RoomClerkThread = new Thread(RoomClerkWorkThread);
             RoomClerkThread.Start();
@@ -26,7 +25,7 @@ namespace Rattrapage_MCI.Model
 
 
         //thread du commis de salle
-        public static void RoomClerkWorkThread()
+        public void RoomClerkWorkThread()
         {
             Console.WriteLine("Commis de salle prets");
             while (true)
@@ -36,17 +35,25 @@ namespace Rattrapage_MCI.Model
         }
 
         //fonction pour apporter l'eau et le pain sur la table
-        public void BringWaterBread()
+        public void BringWaterBread(CustomerGroup group)
         {
             //retirer pain et eau du stock
             StockRoom.BottleQuantity--;
             StockRoom.BreadQuantity--;
 
+            //ajouter sur la table
+            group.Table.Bottle++;
+            group.Table.Bread++;
+
         }
 
         //fonction pour retirer le pain et l'eau
-        public void ClearWaterBread()
+        public void ClearWaterBread(CustomerGroup group)
         {
+            //retirer de la table
+            group.Table.Bottle--;
+            group.Table.Bread--;
+
             //remmettre pain et eau dans le stock
             StockRoom.BottleQuantity++;
             StockRoom.BreadQuantity++;

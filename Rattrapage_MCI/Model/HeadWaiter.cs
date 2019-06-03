@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using static Rattrapage_MCI.Model.Actions;
 
 namespace Rattrapage_MCI.Model
 {
@@ -35,12 +36,16 @@ namespace Rattrapage_MCI.Model
                 //récupération de la liste des groupe dans la file d'attente
                 GroupCustomer = WaitingLine.Groups;
 
-                if (GroupCustomer.Count != 0)
+                if (GroupCustomer == null)
+                {
+                    Thread.Sleep(5000);
+                }
+                else if(GroupCustomer.Count > 0)
                 {
                     CustomerGroup group = GroupCustomer.First();
-                    PlaceCustomerGroup(group, Room.Instance); 
+                    PlaceCustomerGroup(group, Room.Instance);
                     WaitingLine.Groups.Remove(group);
-                    Thread.Sleep(1000);
+                    Thread.Sleep(5000);
                 }
                 else
                 {
@@ -96,11 +101,22 @@ namespace Rattrapage_MCI.Model
                 }
                 else
                 {
-                    //freeTables.OrderBy(o => o.NumberPlace);
+                    // on prend la première table de la liste de tables trié par le nombre de places
                     Table TableGroupe = freeTables.OrderBy(o => o.NumberPlace).First();
-                    group.Table = TableGroupe;
-                    TableGroupe.CustomerGroup = group;
+
+                    //On met la table comme occupée
                     TableGroupe.Occupied = true;
+
+                    //on assigne la table au groupe
+                    group.Table = TableGroupe;
+                    //le groupe attend le chef de rang
+                    group.StateGroup = "waiting";
+
+                    //Ajout de l'action à la toDoliste pour le rankChief
+                    actionDelegate myActionDelegate = new actionDelegate(TableGroupe.TheSquare.RankChief.PlaceGroup);
+                    Actions toDo = new Actions(myActionDelegate, group);
+                    TableGroupe.TheSquare.RankChief.ToDoRankChief.Add(toDo);
+
                     Console.WriteLine("je place mon groupe sur la table " + TableGroupe.IdTable + " avec " + TableGroupe.NumberPlace + " places.");
                 }
             }
