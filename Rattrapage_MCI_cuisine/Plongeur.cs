@@ -13,5 +13,11 @@ namespace Rattrapage_MCI_cuisine
         public void LaveALaMain() { }
 
         Plongeur Plongeur1 = new Plongeur();
-    }
+
+        public Thread StartWorking()
+        {
+            return new Thread(() =>
+            {
+                Console.WriteLine("Washer start working");
+            }
 }

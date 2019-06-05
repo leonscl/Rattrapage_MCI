@@ -16,7 +16,6 @@ namespace Rattrapage_MCI_cuisine
 
         private Couvert couteaux;
         private Couvert cuillieresCafe;
-        private Couvert cuillieresSoupe;
         private Couvert fourchettes;
 
         private Verre verreChampagne;
@@ -29,13 +28,13 @@ namespace Rattrapage_MCI_cuisine
             assiettesDesserts = new Assiette(150, TypeAssiette.dessert);
             assiettesPetites = new Assiette(150, TypeAssiette.petite);
 
-            couteaux = new Couvert(150, TypeCouvert.couteau);
+           /* couteaux = new Couvert(150, TypeCouvert.couteau);
             cuillieresCafe = new Couvert(150, TypeCouvert.cuilliereCafe);
             fourchettes = new Couvert(150, TypeCouvert.fourchette);
 
             verreChampagne = new Verre(150, TypeVerre.champagne);
             verreChampagne = new Verre(150, TypeVerre.eau);
-            verreChampagne = new Verre(150, TypeVerre.vin);
+            verreChampagne = new Verre(150, TypeVerre.vin); */
         }
 
         public MaterielCommun GetMaterielCommun()
