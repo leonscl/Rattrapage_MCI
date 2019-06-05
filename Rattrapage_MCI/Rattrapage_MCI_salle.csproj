@@ -54,6 +54,7 @@
     <Compile Include="Model\RankChief.cs" />
     <Compile Include="Model\Room.cs" />
     <Compile Include="Model\RoomClerk.cs" />
+    <Compile Include="Model\Socket.cs" />
     <Compile Include="Model\Square.cs" />
     <Compile Include="Model\StockRoom.cs" />
     <Compile Include="Model\Table.cs" />

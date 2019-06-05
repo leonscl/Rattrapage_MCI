@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using static Rattrapage_MCI.Model.Actions;
 
 namespace Rattrapage_MCI.Model
 {
@@ -82,9 +83,10 @@ namespace Rattrapage_MCI.Model
             }
 
         }
+
+        //méthode pour choisir ce qu'ils vont manger (rand pour simuler des choix différents)
         public void ChooseOrder(Card card)
         {
-
             Random rand = new Random();
 
             for (int i = 0 ; i<= CustomerNumber; i++)
@@ -98,8 +100,14 @@ namespace Rattrapage_MCI.Model
 
             Console.WriteLine("Groupe n°" + table.IdTable + " veut commander");
 
+            //Ajout de l'action à la toDoliste pour le rankChief
+            actionDelegate myActionDelegate = new actionDelegate(Table.TheSquare.RankChief.TakeOrder);
+            Actions toDo = new Actions(myActionDelegate, this);
+            Table.TheSquare.RankChief.ToDoRankChief.Add(toDo);
         }
 
+
+        //méthode en cour de création
         public void Eat()
         {
             Thread.Sleep(5000);

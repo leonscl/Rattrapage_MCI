@@ -101,11 +101,17 @@ namespace Rattrapage_MCI.Model
             //Reprendre les menus des clients et les reposer
             ReturnMenu(group);
 
+            //Ajout de l'action à la toDoliste pour le rankChief
+            actionDelegate myActionDelegate = new actionDelegate(Room.Instance.RoomClerk.BringWaterBread);
+            Actions toDo = new Actions(myActionDelegate, group);
+            Room.Instance.RoomClerk.ToDoRoomClerk.Add(toDo);
+
             Move("Cartes", "Comptoire de commandes");
             //On transmet la commande au Comptoir de commande
             Room.Instance.CounterOrder.Orders.Add(order);
 
             Move("Comptoire de commandes", "Attente");
+            Console.WriteLine("counterOrder " + Room.Instance.CounterOrder.Orders);
         }
 
         //Reprendre les menus des clients et les reposer dans la pile des cartes (utilisé dans la méthode Take Order)
@@ -114,11 +120,16 @@ namespace Rattrapage_MCI.Model
             Console.WriteLine("Je reprend la carte des menus");
             Move("Table", "Cartes");
             Room.Instance.Card.CardQuantity++;
+            Console.WriteLine("nombre de cartes " + Room.Instance.Card.CardQuantity);
 
         }
 
 
-
+        //Préparer table après que les clients partent
+        public void SetTable()
+        {
+            //mettre la table
+        }
 
 
         public void Move(string depart, string arrivée)
