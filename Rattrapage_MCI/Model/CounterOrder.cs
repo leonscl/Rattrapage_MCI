@@ -20,7 +20,7 @@ namespace Rattrapage_MCI.Model
         private List<Order> orders;
 
         Int32 port = 13000;
-        string serverIp = "clientTCP";
+        string serverIp = "127.0.0.1";
 
         //Constructeur
         public CounterOrder()
