@@ -5,6 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using static Rattrapage_MCI.Model.Actions;
+using System.IO;
+using System.Runtime.Serialization.Json;
+//essai 
+using Rattrapage_MCI.Model;
 
 namespace Rattrapage_MCI.Model
 {
@@ -26,8 +30,6 @@ namespace Rattrapage_MCI.Model
 
             RankChiefThread = new Thread(RankChiefWorkThread);
             RankChiefThread.Start();
-
-            
 
             IdTrack++;
         }
@@ -101,17 +103,17 @@ namespace Rattrapage_MCI.Model
             //Reprendre les menus des clients et les reposer
             ReturnMenu(group);
 
-            //Ajout de l'action à la toDoliste pour le rankChief
+            //Ajout de l'action à la toDoliste pour le RoomClerk
             actionDelegate myActionDelegate = new actionDelegate(Room.Instance.RoomClerk.BringWaterBread);
             Actions toDo = new Actions(myActionDelegate, group);
             Room.Instance.RoomClerk.ToDoRoomClerk.Add(toDo);
 
             Move("Cartes", "Comptoire de commandes");
             //On transmet la commande au Comptoir de commande
+            Room.Instance.CurrentOrders.Add(order);
             Room.Instance.CounterOrder.Orders.Add(order);
 
             Move("Comptoire de commandes", "Attente");
-            Console.WriteLine("counterOrder " + Room.Instance.CounterOrder.Orders);
         }
 
         //Reprendre les menus des clients et les reposer dans la pile des cartes (utilisé dans la méthode Take Order)

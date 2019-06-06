@@ -24,7 +24,7 @@ namespace Rattrapage_MCI.Model
         }
 
         //thread de la fille d'attente
-        public static void WaitingLineThread()
+        public void WaitingLineThread()
         {
             Console.WriteLine("Thread fille d'attente actif");
 

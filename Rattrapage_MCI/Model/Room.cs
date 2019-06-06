@@ -25,6 +25,7 @@ namespace Rattrapage_MCI.Model
         private static readonly object padlock = new object();
 
         private CounterOrder counterOrder;
+        private List<Order> currentOrders;
         private CounterPlate counterPlate;
         private CounterDishes counterDishes;
 
@@ -33,7 +34,7 @@ namespace Rattrapage_MCI.Model
         {
             StockRoom = new StockRoom(40, 40);
             Card = new Card(40);
-            CounterOrder = new CounterOrder();
+            CurrentOrders = new List<Order>();
 
             Square1 = new Square(1);
             Square2 = new Square(2);
@@ -46,6 +47,8 @@ namespace Rattrapage_MCI.Model
             Console.WriteLine("Salle ouverte");
 
             waitLine = new WaitingLine();
+
+            CounterOrder = new CounterOrder();
 
         }
 
@@ -76,8 +79,9 @@ namespace Rattrapage_MCI.Model
         public static List<string> ToDoRoomClerk { get => toDoRoomClerk; set => toDoRoomClerk = value; }
         internal Card Card { get => card; set => card = value; }
         internal StockRoom StockRoom { get => stockRoom; set => stockRoom = value; }
-        internal CounterOrder CounterOrder { get => counterOrder; set => counterOrder = value; }
         internal CounterPlate CounterPlate { get => counterPlate; set => counterPlate = value; }
         internal CounterDishes CounterDishes { get => counterDishes; set => counterDishes = value; }
+        internal List<Order> CurrentOrders { get => currentOrders; set => currentOrders = value; }
+        internal CounterOrder CounterOrder { get => counterOrder; set => counterOrder = value; }
     }
 }

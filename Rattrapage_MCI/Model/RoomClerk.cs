@@ -47,8 +47,8 @@ namespace Rattrapage_MCI.Model
         {
             Move("attente", "stock pain et eau");
             //retirer pain et eau du stock
-            StockRoom.BottleQuantity--;
-            StockRoom.BreadQuantity--;
+            Room.Instance.StockRoom.BottleQuantity--;
+            Room.Instance.StockRoom.BreadQuantity--;
 
             Move("stock pain et eau", "Table client");
 
@@ -71,8 +71,8 @@ namespace Rattrapage_MCI.Model
 
             Move("Table client", "stock pain et eau");
             //remmettre pain et eau dans le stock
-            StockRoom.BottleQuantity++;
-            StockRoom.BreadQuantity++;
+            Room.Instance.StockRoom.BottleQuantity++;
+            Room.Instance.StockRoom.BreadQuantity++;
 
             Console.WriteLine("commis de salle : pain et eau enlevé");
             Move("stock pain et eau", "Attente");

@@ -1,20 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Rattrapage_MCI.Model
 {
+    [DataContract]
     class Order
     {
         //Propriétés
+        [DataMember]
         private int idOrder;
         private static int idIncrementor = 0;
         private CustomerGroup customerGroup;
         private Table table;
+        [DataMember]
         private List<string> entriees;
+        [DataMember]
         private List<string> plats;
+        [DataMember]
         private List<string> deserts;
 
         //constructeur

@@ -28,7 +28,7 @@ namespace Rattrapage_MCI.Model
         }
 
         //thread du headWaiter
-        public static void HeadwaiterWorkThread()
+        public void HeadwaiterWorkThread()
         {
             Console.WriteLine("Thread HeadWaiter pret");
             while (true)
@@ -38,7 +38,7 @@ namespace Rattrapage_MCI.Model
 
                 if (GroupCustomer == null)
                 {
-                    Thread.Sleep(5000);
+                    Thread.Sleep(1000);
                 }
                 else if(GroupCustomer.Count > 0)
                 {
@@ -49,7 +49,7 @@ namespace Rattrapage_MCI.Model
                 }
                 else
                 {
-                    Thread.Sleep(5000);
+                    Thread.Sleep(1000);
                 }
 
             }
@@ -57,7 +57,7 @@ namespace Rattrapage_MCI.Model
         }
 
         //fonction pour donner une table à un client
-        public static void PlaceCustomerGroup(CustomerGroup group, Room room)
+        public void PlaceCustomerGroup(CustomerGroup group, Room room)
         {
             Console.Write("HeadWaiter : Combien etes-vous? ");
             Console.WriteLine("Customers: nous sommes " + group.CustomerNumber);
@@ -123,13 +123,13 @@ namespace Rattrapage_MCI.Model
         }
 
         //pour trouver les tables libres (utilisé dans PlaceCustomerGroup)
-        private static bool FindFreeTables(Table table)
+        private bool FindFreeTables(Table table)
         {
             return table.Occupied == false;
         }
 
         //Faire payer les clients
-        public static void paidGroup()
+        public void paidGroup()
         {
             //a faire
         }
