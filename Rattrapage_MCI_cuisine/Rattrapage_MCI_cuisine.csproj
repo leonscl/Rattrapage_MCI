@@ -48,9 +48,11 @@
     <Compile Include="ChefCuisine.cs" />
     <Compile Include="CommisCuisine.cs" />
     <Compile Include="ChefPartie.cs" />
+    <Compile Include="CounterOrder.cs" />
     <Compile Include="Couvert.cs" />
     <Compile Include="Fourniture.cs" />
     <Compile Include="MaterielCommun.cs" />
+    <Compile Include="Order.cs" />
     <Compile Include="Plat.cs" />
     <Compile Include="Plongeur.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
