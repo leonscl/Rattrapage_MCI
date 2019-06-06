@@ -54,6 +54,8 @@
     <Compile Include="Plat.cs" />
     <Compile Include="Plongeur.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Counter.cs" />
+    <Compile Include="SocketCom.cs" />
     <Compile Include="TypeAssiette.cs" />
     <Compile Include="TypeCouvert.cs" />
     <Compile Include="TypeVerre.cs" />
