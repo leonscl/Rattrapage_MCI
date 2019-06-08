@@ -16,7 +16,7 @@ namespace Rattrapage_MCI.Model
     class CounterOrder
     {
         //propriétés
-        private Thread SocketOrderThread;
+        private Thread counterOrderThread;
         private List<Order> orders;
 
         Int32 port = 13000;
@@ -25,18 +25,18 @@ namespace Rattrapage_MCI.Model
         //Constructeur
         public CounterOrder()
         {
-            orders = new List<Order>();
+            Orders = new List<Order>();
 
-            SocketOrderThread = new Thread(SocketOrderWorkThread);
-            SocketOrderThread.Start();
+            CounterOrderThread = new Thread(CounterOrderWorkThread);
+            CounterOrderThread.Start();
         }
 
-        //thread du headWaiter
-        public void SocketOrderWorkThread()
+        //thread du CounterOrder
+        public void CounterOrderWorkThread()
         {
             while (true)
             {
-                List<Order> listOrders = Orders;
+                //List<Order> listOrders = Orders;
                 if (Orders == null)
                 {
                     Thread.Sleep(1000);
@@ -47,7 +47,7 @@ namespace Rattrapage_MCI.Model
                     SendOrder(order);
                     Orders.Remove(order);
                 }
-
+                Thread.Sleep(1000);
             }
             
         }
@@ -63,10 +63,10 @@ namespace Rattrapage_MCI.Model
                 DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(Order));
                 ser.WriteObject(stream1, order);
 
-                //Instenciation du TcpClient
+                //Instanciation du TcpClient
                 TcpClient client = new TcpClient(ServerIp, Port);
 
-                //Envois de la commande au server TcpListener en utilisant BinaryFormatter
+                //Envois de la commande au server TcpListener via NetworkStream en utilisant BinaryFormatter
                 using (NetworkStream ns = client.GetStream())
                 {
                     BinaryFormatter bf = new BinaryFormatter();
@@ -77,7 +77,7 @@ namespace Rattrapage_MCI.Model
                 //on stope le TcpClient
                 client.Close();
                 
-                Console.Write("Socket terminé --------------- \n");
+                Console.Write("----------Commande" + order.IdOrder + "envoyée dans la cuisine --------- \n");
 
             }
             catch (ArgumentNullException e)
@@ -93,9 +93,9 @@ namespace Rattrapage_MCI.Model
 
 
         //getter et setter
-        public Thread SocketOrderThread1 { get => SocketOrderThread; set => SocketOrderThread = value; }
         public int Port { get => port; set => port = value; }
         internal List<Order> Orders { get => orders; set => orders = value; }
         public string ServerIp { get => serverIp; set => serverIp = value; }
+        public Thread CounterOrderThread { get => counterOrderThread; set => counterOrderThread = value; }
     }
 }

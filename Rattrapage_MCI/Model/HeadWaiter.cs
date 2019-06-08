@@ -45,13 +45,13 @@ namespace Rattrapage_MCI.Model
                     CustomerGroup group = GroupCustomer.First();
                     PlaceCustomerGroup(group, Room.Instance);
                     WaitingLine.Groups.Remove(group);
-                    Thread.Sleep(5000);
+                    Thread.Sleep(3000);
                 }
                 else
                 {
                     Thread.Sleep(1000);
                 }
-
+                Thread.Sleep(1000);
             }
 
         }

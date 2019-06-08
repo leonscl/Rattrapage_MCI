@@ -49,6 +49,8 @@ namespace Rattrapage_MCI.Model
             waitLine = new WaitingLine();
 
             CounterOrder = new CounterOrder();
+            CounterDishes = new CounterDishes();
+            CounterPlate = new CounterPlate();
 
         }
 

@@ -47,8 +47,8 @@ namespace Rattrapage_MCI.Model
                     theDelagate = ToDoRankChief.First().MyFunctionDelegate;
                     theDelagate(ToDoRankChief.First().Group);
                     ToDoRankChief.Remove(ToDoRankChief.First());
-                    Thread.Sleep(1000);
                 }
+                Thread.Sleep(1000);
             }
         }
 
@@ -97,7 +97,7 @@ namespace Rattrapage_MCI.Model
 
             Order order = new Order(group);
 
-            group.StateGroup = "waitingMeal";
+            group.StateGroup = "waiting";
             Console.WriteLine("J'ai pris les commandes de la table " + group.Table.IdTable);
 
             //Reprendre les menus des clients et les reposer
@@ -112,6 +112,7 @@ namespace Rattrapage_MCI.Model
             //On transmet la commande au Comptoir de commande
             Room.Instance.CurrentOrders.Add(order);
             Room.Instance.CounterOrder.Orders.Add(order);
+            group.Order = order;
 
             Move("Comptoire de commandes", "Attente");
         }

@@ -23,6 +23,8 @@ namespace Rattrapage_MCI.Model
         [DataMember]
         private List<string> deserts;
 
+        private List<Dish> waitingDish = null;
+
         //constructeur
         public Order(CustomerGroup group)
         {
@@ -36,6 +38,8 @@ namespace Rattrapage_MCI.Model
             Plats = group.Plats;
             Deserts = group.Deserts;
 
+            WaitingDish = new List<Dish>();
+
             Console.WriteLine("La commande " + IdOrder + " a été faite.");
         }
 
@@ -47,5 +51,6 @@ namespace Rattrapage_MCI.Model
         internal Table Table { get => table; set => table = value; }
         public List<string> Entriees { get => entriees; set => entriees = value; }
         public List<string> Deserts { get => deserts; set => deserts = value; }
+        internal List<Dish> WaitingDish { get => waitingDish; set => waitingDish = value; }
     }
 }

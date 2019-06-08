@@ -55,7 +55,7 @@ namespace Rattrapage_MCI.Model
                     Groups.Add(customer);
                     Thread.Sleep(10000);
                 }
-
+                Thread.Sleep(1000);
 
             }
 

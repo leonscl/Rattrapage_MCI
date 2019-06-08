@@ -49,6 +49,7 @@
     <Compile Include="Model\CounterDishes.cs" />
     <Compile Include="Model\CounterPlate.cs" />
     <Compile Include="Model\CustomerGroup.cs" />
+    <Compile Include="Model\Dish.cs" />
     <Compile Include="Model\HeadWaiter.cs" />
     <Compile Include="Model\Order.cs" />
     <Compile Include="Model\RankChief.cs" />

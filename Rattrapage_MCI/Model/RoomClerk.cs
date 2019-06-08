@@ -39,6 +39,7 @@ namespace Rattrapage_MCI.Model
                     theDelagate(ToDoRoomClerk.First().Group);
                     ToDoRoomClerk.Remove(ToDoRoomClerk.First());
                 }
+                Thread.Sleep(5000);
             }
         }
 

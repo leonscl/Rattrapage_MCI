@@ -16,12 +16,13 @@ namespace Rattrapage_MCI.Model
         private static int idCustomerTrack = 0;
 
         private string stateGroup;
-        private string currentMeal;
+        private Dish currentMeal = null;
 
         private Thread groupThread;
 
         private int customerNumber;
         private Table table = null;
+        private Order order = null;
 
         private List<string> entriees = null;
         private List<string> plats = null;
@@ -64,21 +65,27 @@ namespace Rattrapage_MCI.Model
                         break;
 
                     case "ordering":
-                        Console.WriteLine("Groupe de la Table " + Table.IdTable + ": On refléchie");
+                        Console.WriteLine("Les Clients du groupe " + IdCustomer + ": On refléchie");
                         ChooseOrder(Room.Instance.Card);
                         Thread.Sleep(3000);
                         break;
 
                     case "eating":
-                        Console.WriteLine("Groupe de la Table " + Table.IdTable + " mangent");
+                        Console.WriteLine("Les Clients du groupe " + IdCustomer + " mangent");
                         Eat();
+                        break;
+
+                    case "waitingRid":
+                        Console.WriteLine("Les Clients du groupe " + IdCustomer + " sont en attente de débarasser le plat");
+                        Thread.Sleep(5000);
                         break;
 
                     case "cash out":
                         cashOut();
                         break;
-
+                        
                 }
+                Thread.Sleep(1000);
 
             }
 
@@ -110,31 +117,36 @@ namespace Rattrapage_MCI.Model
         //méthode en cour de création
         public void Eat()
         {
-            Thread.Sleep(5000);
-            
-            if (CurrentMeal == null)
+            //Thread.Sleep(5000);
+
+            if (CurrentMeal.TypeDish == "entrees")
             {
-                CurrentMeal = "entry";
+                Console.WriteLine("Le groupe n°" + IdCustomer + " mange son " + CurrentMeal.TypeDish);
+                Thread.Sleep(15000);
+                StateGroup = "waitingRid";
             }
-            else if (CurrentMeal == "entry")
+            else if (CurrentMeal.TypeDish == "plats")
             {
-                StateGroup = "waiting";
-                CurrentMeal = "main";
+                Console.WriteLine("Le groupe n°" + IdCustomer + " mange son " + CurrentMeal.TypeDish);
+                Thread.Sleep(25000);
+                StateGroup = "waitingRid";
             }
-            else if (CurrentMeal == "main")
+            else if (CurrentMeal.TypeDish == "desserts")
             {
-                StateGroup = "waiting";
-                CurrentMeal = "desert";
+                Console.WriteLine("Le groupe n°" + IdCustomer + " mange son " + CurrentMeal.TypeDish);
+                Thread.Sleep(10000);
+                StateGroup = "waitingRid";
             }
-            else if (CurrentMeal == "desert")
-            {
-                StateGroup = "cash out";
-                //GroupTable.NeedCleaning = true;
-            }
-            else
-            {
-                StateGroup = "needCleaning";
-            }
+
+            //récupérer la liste des waiters suivant le carré donc suivant où sont les clients
+            //récupérer le waiter qui a la liste de chose à faire la moins grande
+            List<Waiter> waiters = Table.TheSquare.Waiters;
+            Waiter theWaiter = waiters.OrderBy(x => x.ToDoWaiter.Count()).First();
+            //Ajout de l'action à la toDoliste pour le waiter
+            actionDelegate myActionDelegate = new actionDelegate(theWaiter.RiddingDish);
+            Actions toDo = new Actions(myActionDelegate, this);
+            theWaiter.ToDoWaiter.Add(toDo);
+
         }
 
         public void cashOut()
@@ -150,9 +162,11 @@ namespace Rattrapage_MCI.Model
         internal Table Table { get => table; set => table = value; }
         public static int IdCustomerTrack { get => idCustomerTrack; set => idCustomerTrack = value; }
         public string StateGroup { get => stateGroup; set => stateGroup = value; }
-        public string CurrentMeal { get => currentMeal; set => currentMeal = value; }
+        
         public List<string> Entriees { get => entriees; set => entriees = value; }
         public List<string> Plats { get => plats; set => plats = value; }
         public List<string> Deserts { get => deserts; set => deserts = value; }
+        internal Order Order { get => order; set => order = value; }
+        internal Dish CurrentMeal { get => currentMeal; set => currentMeal = value; }
     }
 }
