@@ -12,34 +12,40 @@ using System.Threading.Tasks;
 
 namespace Rattrapage_MCI_cuisine
 {
-    class CounterOrder
+    class CounterPlate
     {
         //propriétés
-        private Thread counterOrderThread;
-        Int32 port = 13000;
-        IPAddress localAddress = IPAddress.Parse("127.0.0.1");
+        private Thread counterPlateThread;
+        private List<Dish> dishes;
+
+        Int32 port = 13002;
+        IPAddress localAddr = IPAddress.Parse("127.0.0.1");
 
         //Constructeur
-        public CounterOrder()
+        public CounterPlate()
         {
-            CounterOrderThread = new Thread(CounterorderWorkThread);
-            CounterOrderThread.Start();
+            Dishes = new List<Dish>();
+
+            CounterPlateThread = new Thread(CounterPlateWorkThread);
+            CounterPlateThread.Start();
         }
 
-        //thread du TcpListener pour écouter la salle et récupérer les commandes
-        public void CounterorderWorkThread()
+        //thread du CounterPlate
+        public void CounterPlateWorkThread()
         {
-            ReceiveOrder();
+            ReceivePlate();
         }
 
-        //Méthode pour recevoir les commandes faites via un TcpListener
-        public void ReceiveOrder()
+        //méthode pour recevoir les plats sales avec un TcpListener
+        public void ReceivePlate()
         {
             TcpListener server = null;
 
             try
             {
-                server = new TcpListener(LocalAddress, Port);
+
+                // TcpListener server = new TcpListener(port);
+                server = new TcpListener(localAddr, port);
                 // Start listening for client requests.
                 server.Start();
 
@@ -67,16 +73,18 @@ namespace Rattrapage_MCI_cuisine
                     Console.WriteLine(sr.ReadToEnd());
 
                     //créer mon objet à partir de mon Json et afficher id ce la commande pour vérifier
-                    DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(Order));
+                    DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(Dish));
                     stream1.Position = 0;
-                    Order newOrder = (Order)ser.ReadObject(stream1);
-                    Console.Write("id de la commande" + newOrder.IdOrder);
-
+                    Dish newDish = (Dish)ser.ReadObject(stream1);
 
                     // Shutdown and end connection
                     client.Close();
 
+                    Dishes.Add(newDish);
+                    Thread.Sleep(1000);
                 }
+
+
             }
             catch (SocketException e)
             {
@@ -87,11 +95,13 @@ namespace Rattrapage_MCI_cuisine
                 // Stop listening for new clients.
                 server.Stop();
             }
+
         }
 
-        //getter et setter
+        //getters et setters
         public int Port { get => port; set => port = value; }
-        public Thread CounterOrderThread { get => counterOrderThread; set => counterOrderThread = value; }
-        public IPAddress LocalAddress { get => localAddress; set => localAddress = value; }
+        public IPAddress LocalAddr { get => localAddr; set => localAddr = value; }
+        internal List<Dish> Dishes { get => dishes; set => dishes = value; }
+        public Thread CounterPlateThread { get => counterPlateThread; set => counterPlateThread = value; }
     }
 }
