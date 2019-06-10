@@ -20,16 +20,31 @@ namespace Rattrapage_MCI_cuisine
         [DataMember]
         private List<string> deserts;
 
-        //constructeur
-        /*public Order()
-        {
-
-        }*/
-
         public int IdOrder { get => idOrder; set => idOrder = value; }
         public List<string> Entriees { get => entriees; set => entriees = value; }
         public List<string> Plats { get => plats; set => plats = value; }
         public List<string> Deserts { get => deserts; set => deserts = value; }
+
+        /// <summary>
+        /// Id of the command
+        /// </summary>
+        public int Id { get; set; }
+
+        /// <summary>
+        /// List of dishes ordered
+        /// </summary>
+        public List<Dish> Dishes { get; set; }
+
+        /// <summary>
+        /// The order is readay or not
+        /// </summary>
+        public bool Ready { get; set; }
+
+        public Order()
+        {
+            this.Dishes = new List<Dish>();
+            this.Ready = false;
+        }
 
     }
 }
