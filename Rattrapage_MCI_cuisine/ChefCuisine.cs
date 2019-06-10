@@ -34,23 +34,23 @@ namespace Rattrapage_MCI_cuisine
             }
         }
 
-        /* public void CarryOrder(Order cmd)
+         public void CarryOrder(Order cmd)
         {
-            foreach (var item in cmd.Dishes)
+            foreach (var item in cmd.Plats)
             {
                 Console.WriteLine("Ajouté un nouveau plat au threadpool");
                 ThreadPool.QueueUserWorkItem(state => PrepareDish(item));
             }
-        } */
+        } 
 
         /// <summary>
         /// Prepare a recipe
         /// </summary>
         /// <param name="recipe">The recipe to prepare</param>
-        private void PrepareDish(Plat dish)
+       /* private void PrepareDish(Dish dish)
         {
             Console.WriteLine("Début de la préparation du plat");
-            /* foreach (var step in dish.Recipe.Steps)
+             foreach (var step in dish.Recipe.Steps)
             {
                 ChefPartie cooker;
                 { cooker = this.ElectCooker(); } while (cooker == null) ;
@@ -58,7 +58,7 @@ namespace Rattrapage_MCI_cuisine
                 if (step.Order == dish.Recipe.Steps.Count()) cooker.PrepareStep(step, dish);
                 else cooker.PrepareStep(step);
             }
-            if (dish.CurrentOrder.Dishes.All(o => o.Ready)) dish.CurrentOrder.Ready = true; */
+            if (dish.CurrentOrder.Dishes.All(o => o.Ready)) dish.CurrentOrder.Ready = true; 
         }
-    }
+    }*/
 }

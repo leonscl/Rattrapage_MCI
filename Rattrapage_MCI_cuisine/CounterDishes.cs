@@ -34,8 +34,8 @@ namespace Rattrapage_MCI_cuisine
                 ///// Cette partie est à adapter à la cuisine
 
 
-                /*
                 
+                /*
                 List<Order> orders = SocketServer.Instance.Orders;
 
                 if (orders == null)
