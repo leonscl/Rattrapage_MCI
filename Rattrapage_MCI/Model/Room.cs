@@ -18,14 +18,15 @@ namespace Rattrapage_MCI.Model
         private HeadWaiter headWaiter;
 
         private WaitingLine waitLine;
+        private WaitingPay waitingPay;
         private Card card;
         private StockRoom stockRoom;
+        private List<Order> currentOrders;
 
         private static Room instance;
         private static readonly object padlock = new object();
 
         private CounterOrder counterOrder;
-        private List<Order> currentOrders;
         private CounterPlate counterPlate;
         private CounterDishes counterDishes;
 
@@ -47,6 +48,7 @@ namespace Rattrapage_MCI.Model
             Console.WriteLine("Salle ouverte");
 
             waitLine = new WaitingLine();
+            waitingPay = new WaitingPay();
 
             CounterOrder = new CounterOrder();
             CounterDishes = new CounterDishes();
@@ -85,5 +87,6 @@ namespace Rattrapage_MCI.Model
         internal CounterDishes CounterDishes { get => counterDishes; set => counterDishes = value; }
         internal List<Order> CurrentOrders { get => currentOrders; set => currentOrders = value; }
         internal CounterOrder CounterOrder { get => counterOrder; set => counterOrder = value; }
+        internal WaitingPay WaitingPay { get => waitingPay; set => waitingPay = value; }
     }
 }

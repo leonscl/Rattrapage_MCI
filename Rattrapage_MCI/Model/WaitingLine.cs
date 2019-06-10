@@ -11,7 +11,7 @@ namespace Rattrapage_MCI.Model
     {
 
         //propriétés
-        private static List<CustomerGroup> groups;
+        private List<CustomerGroup> groups;
         private Thread lineThread;
 
         //constructeur
@@ -63,6 +63,6 @@ namespace Rattrapage_MCI.Model
 
         //Getter et setter
         public Thread LineThread { get => lineThread; set => lineThread = value; }
-        internal static List<CustomerGroup> Groups { get => groups; set => groups = value; }
+        internal List<CustomerGroup> Groups { get => groups; set => groups = value; }
     }
 }

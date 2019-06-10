@@ -14,7 +14,7 @@ namespace Rattrapage_MCI.Model
 
         private int numberPlace;
         private bool occupied;
-        //private bool needCleaning;
+        private bool needCleaning;
 
         private int bread;
         private int bottle;
@@ -31,6 +31,7 @@ namespace Rattrapage_MCI.Model
 
             NumberPlace = placenumber;
             Occupied = false;
+            NeedCleaning = false;
 
             Bread = 0;
             Bottle = 0;
@@ -47,5 +48,6 @@ namespace Rattrapage_MCI.Model
         public int Bottle { get => bottle; set => bottle = value; }
         internal CustomerGroup CustomerGroup { get => customerGroup; set => customerGroup = value; }
         internal Square TheSquare { get => theSquare; set => theSquare = value; }
+        public bool NeedCleaning { get => needCleaning; set => needCleaning = value; }
     }
 }

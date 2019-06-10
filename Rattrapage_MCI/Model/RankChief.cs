@@ -7,7 +7,6 @@ using System.Threading;
 using static Rattrapage_MCI.Model.Actions;
 using System.IO;
 using System.Runtime.Serialization.Json;
-//essai 
 using Rattrapage_MCI.Model;
 
 namespace Rattrapage_MCI.Model
@@ -129,9 +128,14 @@ namespace Rattrapage_MCI.Model
 
 
         //Préparer table après que les clients partent
-        public void SetTable()
+        public void SetTable(CustomerGroup group)
         {
-            //mettre la table
+            Move("attente", "table ");
+            group.Table.NeedCleaning = false;
+            group.Table.Occupied = false;
+            group.CanbeDeleted = true;
+            Console.WriteLine("`\n La table " + group.Table.IdTable + " est prête.");
+            Move("Table", "attente");
         }
 
 
@@ -146,6 +150,5 @@ namespace Rattrapage_MCI.Model
         public int Id { get => id; set => id = value; }
         public static int IdTrack { get => idTrack; set => idTrack = value; }
         internal List<Actions> ToDoRankChief { get => toDoRankChief; set => toDoRankChief = value; }
-        //internal static List<Actions> ToDoRankChief1 { get => toDoRankChief; set => toDoRankChief = value; }
     }
 }

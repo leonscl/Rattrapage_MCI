@@ -23,6 +23,8 @@ namespace Rattrapage_MCI.Model
         [DataMember]
         private List<string> deserts;
 
+        private int price = 0;
+
         private List<Dish> waitingDish = null;
 
         //constructeur
@@ -38,6 +40,19 @@ namespace Rattrapage_MCI.Model
             Plats = group.Plats;
             Deserts = group.Deserts;
 
+            foreach (string entry in Entriees)
+            {
+                Price = Price + 3;
+            }
+            foreach (string plat in Plats)
+            {
+                Price = Price + 5;
+            }
+            foreach (string dessert in Deserts)
+            {
+                Price = Price + 4;
+            }
+
             WaitingDish = new List<Dish>();
 
             Console.WriteLine("La commande " + IdOrder + " a été faite.");
@@ -52,5 +67,6 @@ namespace Rattrapage_MCI.Model
         public List<string> Entriees { get => entriees; set => entriees = value; }
         public List<string> Deserts { get => deserts; set => deserts = value; }
         internal List<Dish> WaitingDish { get => waitingDish; set => waitingDish = value; }
+        public int Price { get => price; set => price = value; }
     }
 }

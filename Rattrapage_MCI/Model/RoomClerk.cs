@@ -78,6 +78,11 @@ namespace Rattrapage_MCI.Model
             Console.WriteLine("commis de salle : pain et eau enlevé");
             Move("stock pain et eau", "Attente");
 
+            //Ajout de l'action à la toDoliste pour le rankChief
+            actionDelegate myActionDelegate = new actionDelegate(group.Table.TheSquare.RankChief.SetTable);
+            Actions toDo = new Actions(myActionDelegate, group);
+            group.Table.TheSquare.RankChief.ToDoRankChief.Add(toDo);
+
         }
 
         public void Move(string depart, string arrivée)

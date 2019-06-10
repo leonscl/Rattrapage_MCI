@@ -61,6 +61,7 @@
     <Compile Include="Model\Table.cs" />
     <Compile Include="Model\Waiter.cs" />
     <Compile Include="Model\WaitingLine.cs" />
+    <Compile Include="Model\WaitingPay.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

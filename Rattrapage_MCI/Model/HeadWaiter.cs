@@ -14,14 +14,9 @@ namespace Rattrapage_MCI.Model
         //Propriétés
         private Thread headWaiterThread;
 
-        private static List<CustomerGroup> groupCustomer;
-
-        private List<string> toDo = null;
-
         //constructeur
         public HeadWaiter()
         {
-
             headWaiterThread = new Thread(HeadwaiterWorkThread);
             headWaiterThread.Start();
 
@@ -34,30 +29,30 @@ namespace Rattrapage_MCI.Model
             while (true)
             {
                 //récupération de la liste des groupe dans la file d'attente
-                GroupCustomer = WaitingLine.Groups;
+                List<CustomerGroup> groupCustomer = Room.Instance.WaitLine.Groups;
+                //Récupération de la file d'attente des customers qui veulent payer
+                List<CustomerGroup> customerWantPay = Room.Instance.WaitingPay.Groups;
 
-                if (GroupCustomer == null)
+                if (groupCustomer.Count > 0)
                 {
-                    Thread.Sleep(1000);
+                    CustomerGroup group = groupCustomer.First();
+                    PlaceCustomerGroup(groupCustomer, group, Room.Instance);
+                    Room.Instance.WaitLine.Groups.Remove(group);
                 }
-                else if(GroupCustomer.Count > 0)
+                if (customerWantPay.Count > 0)
                 {
-                    CustomerGroup group = GroupCustomer.First();
-                    PlaceCustomerGroup(group, Room.Instance);
-                    WaitingLine.Groups.Remove(group);
-                    Thread.Sleep(3000);
+                    CustomerGroup group = customerWantPay.First();
+                    PaidGroup(group);
+                    Room.Instance.WaitingPay.Groups.Remove(group);
                 }
-                else
-                {
-                    Thread.Sleep(1000);
-                }
-                Thread.Sleep(1000);
+
+                Thread.Sleep(2000);
             }
 
         }
 
         //fonction pour donner une table à un client
-        public void PlaceCustomerGroup(CustomerGroup group, Room room)
+        public void PlaceCustomerGroup(List<CustomerGroup> groupCustomer, CustomerGroup group, Room room)
         {
             Console.Write("HeadWaiter : Combien etes-vous? ");
             Console.WriteLine("Customers: nous sommes " + group.CustomerNumber);
@@ -71,7 +66,7 @@ namespace Rattrapage_MCI.Model
             if (freeTables.Count == 0)
             {
                 Console.WriteLine("Pas de table libre");
-                GroupCustomer.Remove(group);
+                groupCustomer.Remove(group);
             }
             else
             {
@@ -97,7 +92,7 @@ namespace Rattrapage_MCI.Model
                 if (freeTables.Count == 0)
                 {
                     Console.WriteLine("Plus de table libre (pas assez de place)");
-                    GroupCustomer.Remove(group);
+                    groupCustomer.Remove(group);
                 }
                 else
                 {
@@ -129,13 +124,15 @@ namespace Rattrapage_MCI.Model
         }
 
         //Faire payer les clients
-        public void paidGroup()
+        public void PaidGroup(CustomerGroup group)
         {
-            //a faire
+            Console.WriteLine("Vous devez payer " + group.Order.Price + " euros");
+            Console.WriteLine("Le groupe " + group.IdCustomer + " paye");
+            group.StateGroup = "paid";
+            Console.WriteLine("Je vous souhaite une bonne journée en espérant que  vous avez apréciez notre resaurant" + group.IdCustomer + " paye");
+            Room.Instance.CurrentOrders.Remove(group.Order);
+            Room.Instance.WaitingPay.EndGroups.Add(group);
         }
 
-        //get et set
-        public List<string> ToDo { get => toDo; set => toDo = value; }
-        internal static List<CustomerGroup> GroupCustomer { get => groupCustomer; set => groupCustomer = value; }
     }
 }

@@ -77,6 +77,23 @@ namespace Rattrapage_MCI.Model
 
         public void RiddingDish(CustomerGroup group)
         {
+            
+            if (group.Table.NeedCleaning == true)
+            {
+                Move("attente", "Table Client");
+                Console.WriteLine("Waiter : Je débarasse les plats");
+                Dish theDish = group.CurrentMeal;
+                group.CurrentMeal = null;
+                Move("Table Client", "CounterPlate");
+                Room.Instance.CounterPlate.Dishes.Add(theDish);
+                Move("CounterPlate", "Attente");
+                ToDoWaiter.Remove(ToDoWaiter.First());
+
+                //Ajout de l'action à la toDoliste pour le RoomClerk
+                actionDelegate myActionDelegate = new actionDelegate(Room.Instance.RoomClerk.ClearWaterBread);
+                Actions toDo = new Actions(myActionDelegate, group);
+                Room.Instance.RoomClerk.ToDoRoomClerk.Add(toDo);
+            }
             if (group.StateGroup == "waitingRid")
             {
                 Move("attente", "Table Client");
@@ -89,12 +106,7 @@ namespace Rattrapage_MCI.Model
                 Move("CounterPlate", "Attente");
                 ToDoWaiter.Remove(ToDoWaiter.First());
             }
-            else
-            {
-                Actions toDo = ToDoWaiter.First();
-                ToDoWaiter.Remove(toDo);
-                ToDoWaiter.Add(toDo);
-            }
+  
         }
 
 
