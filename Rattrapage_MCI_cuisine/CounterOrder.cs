@@ -18,10 +18,13 @@ namespace Rattrapage_MCI_cuisine
         private Thread counterOrderThread;
         Int32 port = 13000;
         IPAddress localAddress = IPAddress.Parse("127.0.0.1");
+        private List<Order> listOrders;
 
         //Constructeur
         public CounterOrder()
         {
+            ListOrders = new List<Order>();
+
             CounterOrderThread = new Thread(CounterorderWorkThread);
             CounterOrderThread.Start();
         }
@@ -72,6 +75,7 @@ namespace Rattrapage_MCI_cuisine
                     Order newOrder = (Order)ser.ReadObject(stream1);
                     Console.Write("id de la commande" + newOrder.IdOrder);
 
+                    ListOrders.Add(newOrder);
 
                     // Shutdown and end connection
                     client.Close();
@@ -93,5 +97,6 @@ namespace Rattrapage_MCI_cuisine
         public int Port { get => port; set => port = value; }
         public Thread CounterOrderThread { get => counterOrderThread; set => counterOrderThread = value; }
         public IPAddress LocalAddress { get => localAddress; set => localAddress = value; }
+        internal List<Order> ListOrders { get => listOrders; set => listOrders = value; }
     }
 }

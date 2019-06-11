@@ -13,7 +13,8 @@ namespace Rattrapage_MCI_cuisine
     {
         //propriétés
         private Thread socketDishesThread;
-        private List<string> dishes;
+        //private List<string> dishes;
+        private List<DishReady> dishReadies;
 
         Int32 port = 13001;
         string serverIp = "127.0.0.1";
@@ -21,6 +22,8 @@ namespace Rattrapage_MCI_cuisine
         //Constructeur
         public CounterDishes()
         {
+            DishReadies = new List<DishReady>();
+
             SocketDishesThread = new Thread(SocketDishesWorkThread);
             SocketDishesThread.Start();
         }
@@ -31,62 +34,33 @@ namespace Rattrapage_MCI_cuisine
             while (true)
             {
 
-                ///// Cette partie est à adapter à la cuisine
-
-
-                
-                /*
-                List<Order> orders = SocketServer.Instance.Orders;
-
-                if (orders == null)
+                if(DishReadies.Count() > 0)
+                {
+                    DishReady dishes = DishReadies.First();
+                    SendDishs(dishes);
+                    DishReadies.Remove(dishes);
+                }
+                else
                 {
                     Thread.Sleep(1000);
                 }
-                else if (orders.Count > 0)
-                {
-                    Order order = orders.First();
-
-                    Dishes = new List<string>();
-
-                    Thread.Sleep(1000);
-                    //Thread.Sleep(15000);
-                    Dishes.Add(order.IdOrder.ToString());
-                    Dishes.Add("entrees");
-                    Console.Write("\n Contenu dishes ----" + Dishes[1] + " ------ \n");
-                    SendDishs(Dishes);
-
-                    Thread.Sleep(1000);
-                    //Thread.Sleep(35000);
-                    Dishes.Clear();
-                    Dishes.Add(order.IdOrder.ToString());
-                    Dishes.Add("plats");
-                    Console.Write("\n Contenu dishes ----" + Dishes[1] + " ------ \n");
-                    SendDishs(Dishes);
-
-                    Thread.Sleep(1000);
-                    //Thread.Sleep(15000);
-                    Dishes.Clear();
-                    Dishes.Add(order.IdOrder.ToString());
-                    Dishes.Add("desserts");
-                    Console.Write("\n Contenu dishes ----" + Dishes[1] + " ------ \n");
-                    SendDishs(Dishes);
-
-
-                    orders.Remove(order);
-                }
-                */
-
-                //////
+                Thread.Sleep(1000);
             }
 
         }
 
 
         //Méthode pour envoier les plats prets via un TcpClient
-        public void SendDishs(List<string> dishes)
+        public void SendDishs(List<DishReady> readyDishes)
         {
             try
             {
+
+                //récupérer le type des dishs et les dish (en string) pour le mettre dans une liste
+                List<string> dishes = new List<string>();
+                //dishes.Add("id order");
+                //dishes.Add("type dish");
+
                 //Instanciation du TcpClient
                 TcpClient client = new TcpClient(ServerIp, Port);
 
@@ -96,7 +70,7 @@ namespace Rattrapage_MCI_cuisine
                     BinaryFormatter bf = new BinaryFormatter();
                     bf.Serialize(ns, dishes);
                 }
-                Console.Write("\n dish envoyé ----" + Dishes[1] + " --- \n");
+                Console.Write("\n dish envoyé ----" + dishes[1] + " --- \n");
                 //on stope le TcpClient
                 client.Close();
 
@@ -112,11 +86,14 @@ namespace Rattrapage_MCI_cuisine
 
         }
 
+
+
         //getter et setter
         public int Port { get => port; set => port = value; }
         public string ServerIp { get => serverIp; set => serverIp = value; }
         public Thread SocketDishesThread { get => socketDishesThread; set => socketDishesThread = value; }
-        public List<string> Dishes { get => dishes; set => dishes = value; }
+        public List<DishReady> DishReadies { get => dishReadies; set => dishReadies = value; }
+        //public List<string> Dishes { get => dishes; set => dishes = value; }
 
     }
 }
