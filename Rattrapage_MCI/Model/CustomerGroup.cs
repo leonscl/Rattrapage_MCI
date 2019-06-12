@@ -54,34 +54,31 @@ namespace Rattrapage_MCI.Model
         {
             try
             {
-                Console.WriteLine("Thread Group de clients " + IdCustomer);
+                Console.WriteLine("Thread Group de clients n° " + IdCustomer + "initialisé");
                 while (true)
                 {
                     switch (StateGroup)
                     {
                         case "paid":
                             Paid();
-                            Console.WriteLine("state paid pour le groupe " + IdCustomer);
                             break;
 
                         case "waiting":
-                            Console.WriteLine("Les Clients du groupe " + IdCustomer + " sont en attente");
+                            Console.WriteLine("Le groupe n° " + IdCustomer + " est en attente");
                             Thread.Sleep(6000);
                             break;
 
                         case "ordering":
-                            Console.WriteLine("Les Clients du groupe " + IdCustomer + ": On refléchie");
                             ChooseOrder(Room.Instance.Card);
                             Thread.Sleep(3000);
                             break;
 
                         case "eating":
-                            Console.WriteLine("Les Clients du groupe " + IdCustomer + " mangent");
                             Eat();
                             break;
 
                         case "waitingRid":
-                            Console.WriteLine("Les Clients du groupe " + IdCustomer + " sont en attente de débarasser le plat");
+                            Console.WriteLine("Le groupe n° " + IdCustomer + " attend que le serveur débarasse les plats");
                             Thread.Sleep(5000);
                             break;
 
@@ -90,7 +87,7 @@ namespace Rattrapage_MCI.Model
                             break;
 
                         case "waitingPay":
-                            Console.WriteLine("Les Clients du groupe " + IdCustomer + " sont en attente de payer");
+                            Console.WriteLine("Le groupe n° " + IdCustomer + " attend de payer");
                             Thread.Sleep(5000);
                             break;
                     }
@@ -100,7 +97,7 @@ namespace Rattrapage_MCI.Model
             }
             catch (ThreadAbortException)
             {
-                Console.WriteLine("Les Clients du groupe " + IdCustomer + " sont partis ");
+                Console.WriteLine("Le groupe n° " + IdCustomer + " est partis ");
             }
 
 
@@ -120,7 +117,7 @@ namespace Rattrapage_MCI.Model
 
             StateGroup = "OrderComplete";
 
-            Console.WriteLine("Groupe n°" + table.IdTable + " veut commander");
+            Console.WriteLine("Le groupe n° " + IdCustomer + ": a réfléchi et veux commander");
 
             //Ajout de l'action à la toDoliste pour le rankChief
             actionDelegate myActionDelegate = new actionDelegate(Table.TheSquare.RankChief.TakeOrder);
@@ -136,19 +133,19 @@ namespace Rattrapage_MCI.Model
 
             if (CurrentMeal.TypeDish == "entrees")
             {
-                Console.WriteLine("Le groupe n°" + IdCustomer + " mange son " + CurrentMeal.TypeDish);
+                Console.WriteLine("Le groupe n°" + IdCustomer + " mange son entrée.");
                 Thread.Sleep(15000);
                 StateGroup = "waitingRid";
             }
             else if (CurrentMeal.TypeDish == "plats")
             {
-                Console.WriteLine("Le groupe n°" + IdCustomer + " mange son " + CurrentMeal.TypeDish);
+                Console.WriteLine("Le groupe n°" + IdCustomer + " mange son Plat.");
                 Thread.Sleep(25000);
                 StateGroup = "waitingRid";
             }
             else if (CurrentMeal.TypeDish == "desserts")
             {
-                Console.WriteLine("Le groupe n°" + IdCustomer + " mange son " + CurrentMeal.TypeDish);
+                Console.WriteLine("Le groupe n°" + IdCustomer + " mange son déssert.");
                 Thread.Sleep(10000);
                 Table.NeedCleaning = true;
                 StateGroup = "cash out";
@@ -184,16 +181,14 @@ namespace Rattrapage_MCI.Model
                 CurrentMeal = null;
                 Room.Instance.WaitingPay.EndGroups.Remove(this);
                 StateGroup = null;
-                //Console.WriteLine("Les Clients du groupe " + IdCustomer + " sont partis");
                 groupThread.Abort(this);
 
             }
-            Console.WriteLine("paid a été activé pour le groupe " + IdCustomer);
         }
 
         public void Move(string depart, string arrivée)
         {
-            Console.WriteLine("je me déplace de " + depart + " vers " + arrivée);
+            Console.WriteLine("Le groupe de déplace de " + depart + " vers " + arrivée);
         }
 
         //getter et setter

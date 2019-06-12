@@ -25,7 +25,7 @@ namespace Rattrapage_MCI.Model
         //thread du headWaiter
         public void HeadwaiterWorkThread()
         {
-            Console.WriteLine("Thread HeadWaiter pret");
+            Console.WriteLine("Le thread Maître d'hôtel prêt");
             while (true)
             {
                 //récupération de la liste des groupe dans la file d'attente
@@ -54,8 +54,8 @@ namespace Rattrapage_MCI.Model
         //fonction pour donner une table à un client
         public void PlaceCustomerGroup(List<CustomerGroup> groupCustomer, CustomerGroup group, Room room)
         {
-            Console.Write("HeadWaiter : Combien etes-vous? ");
-            Console.WriteLine("Customers: nous sommes " + group.CustomerNumber);
+            Console.Write("Maître d'hôtel : Bonjour ! Combien etes-vous ? ");
+            Console.WriteLine("Clients : nous sommes " + group.CustomerNumber);
 
             Predicate<Table> predicate = FindFreeTables;
             List<Table> freeTables = new List<Table>();
@@ -65,7 +65,7 @@ namespace Rattrapage_MCI.Model
             //vérifier s'ily a encore des tables, si oui placer les clients à la table
             if (freeTables.Count == 0)
             {
-                Console.WriteLine("Pas de table libre");
+                Console.WriteLine("Maître d'hôtel : Plus de table libre");
                 groupCustomer.Remove(group);
             }
             else
@@ -79,7 +79,7 @@ namespace Rattrapage_MCI.Model
                     //trouver les tables trop petites
                     if (table.NumberPlace < group.CustomerNumber)
                     {
-                        Console.WriteLine("Table " + table.IdTable + " est trop petite ");
+                        Console.WriteLine("La table " + table.IdTable + " est trop petite ");
                         removeTable.Add(table);
                     }
                 }
@@ -91,7 +91,7 @@ namespace Rattrapage_MCI.Model
 
                 if (freeTables.Count == 0)
                 {
-                    Console.WriteLine("Plus de table libre (pas assez de place)");
+                    Console.WriteLine("Maître d'hôtel : Je suis désollé mais il n'y a plus de table libre (pas assez de place)");
                     groupCustomer.Remove(group);
                 }
                 else
@@ -112,7 +112,7 @@ namespace Rattrapage_MCI.Model
                     Actions toDo = new Actions(myActionDelegate, group);
                     TableGroupe.TheSquare.RankChief.ToDoRankChief.Add(toDo);
 
-                    Console.WriteLine("je place mon groupe sur la table " + TableGroupe.IdTable + " avec " + TableGroupe.NumberPlace + " places.");
+                    Console.WriteLine("Maître d'hôtel : je place mon groupe" + group.IdCustomer + "sur la table " + TableGroupe.IdTable + " avec " + TableGroupe.NumberPlace + " places.");
                 }
             }
         }
@@ -126,10 +126,10 @@ namespace Rattrapage_MCI.Model
         //Faire payer les clients
         public void PaidGroup(CustomerGroup group)
         {
-            Console.WriteLine("Vous devez payer " + group.Order.Price + " euros");
+            Console.WriteLine("Maître d'hôtel : Vous devez payer " + group.Order.Price + " euros");
             Console.WriteLine("Le groupe " + group.IdCustomer + " paye");
             group.StateGroup = "paid";
-            Console.WriteLine("Je vous souhaite une bonne journée en espérant que  vous avez apréciez notre resaurant" + group.IdCustomer + " paye");
+            Console.WriteLine("Maître d'hôtel : Je vous souhaite une bonne journée en espérant que vous avez apréciez notre restaurant !");
             Room.Instance.CurrentOrders.Remove(group.Order);
             Room.Instance.WaitingPay.EndGroups.Add(group);
         }

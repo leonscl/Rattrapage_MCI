@@ -59,7 +59,7 @@ namespace Rattrapage_MCI.Model
                 Move("attente", "comptoire");
                 Room.Instance.CounterDishes.WaitingDishs.Remove(dish);
                 Move("comptoire", "Table des clients");
-                Console.WriteLine("Voici les " + dish.TypeDish);
+                Console.WriteLine("Waiter : Voici les " + dish.TypeDish);
                 group.CurrentMeal = dish;
                 group.Order.WaitingDish.Remove(dish);
                 Move("Table client", "attente");
@@ -119,7 +119,7 @@ namespace Rattrapage_MCI.Model
 
         public void Move(string depart, string arrivée)
         {
-            Console.WriteLine("je me déplace de " + depart + " vers " + arrivée);
+            Console.WriteLine("Le waiter se déplace de " + depart + " vers " + arrivée);
         }
 
         //getter et setter

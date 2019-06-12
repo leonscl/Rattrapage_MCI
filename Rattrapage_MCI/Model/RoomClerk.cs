@@ -57,7 +57,7 @@ namespace Rattrapage_MCI.Model
             group.Table.Bottle++;
             group.Table.Bread++;
 
-            Console.WriteLine("commis de salle : pain et eau mis");
+            Console.WriteLine("Commis de salle : pain et eau mis");
             Move("Table client", "attente");
 
         }
@@ -75,7 +75,7 @@ namespace Rattrapage_MCI.Model
             Room.Instance.StockRoom.BottleQuantity++;
             Room.Instance.StockRoom.BreadQuantity++;
 
-            Console.WriteLine("commis de salle : pain et eau enlevé");
+            Console.WriteLine("Commis de salle : pain et eau enlevé");
             Move("stock pain et eau", "Attente");
 
             //Ajout de l'action à la toDoliste pour le rankChief
@@ -87,7 +87,7 @@ namespace Rattrapage_MCI.Model
 
         public void Move(string depart, string arrivée)
         {
-            Console.WriteLine("je me déplace de " + depart + " vers " + arrivée);
+            Console.WriteLine("Le commis de salle se déplace de " + depart + " vers " + arrivée);
         }
 
         //getter et setter

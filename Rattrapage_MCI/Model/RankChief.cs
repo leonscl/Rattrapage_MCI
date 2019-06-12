@@ -36,13 +36,13 @@ namespace Rattrapage_MCI.Model
         //thread du RankChief
         public void RankChiefWorkThread()
         {
-            Console.WriteLine("Thread RankChief pret" + Id);
+            Console.WriteLine("Thread Chef de rang " + Id + " pret." );
 
             while (true)
             {
                 if (ToDoRankChief.Count != 0)
                 {
-                    Console.WriteLine("rankchief : je suis là");
+                    Console.WriteLine("Chef de rang : je suis là");
                     theDelagate = ToDoRankChief.First().MyFunctionDelegate;
                     theDelagate(ToDoRankChief.First().Group);
                     ToDoRankChief.Remove(ToDoRankChief.First());
@@ -57,7 +57,7 @@ namespace Rattrapage_MCI.Model
         {
             Move("attente", "groupe de Clients");
 
-            Console.WriteLine(" Chef de rang: suivez moi");
+            Console.WriteLine("Chef de rang : suivez moi");
 
             Move("Groupe client", "Table");
             Table table = group.Table;
@@ -65,7 +65,7 @@ namespace Rattrapage_MCI.Model
 
             //update ViewModelPersonnel
 
-            Console.WriteLine("Table " + group.Table.IdTable + ": les clients sont installés");
+            Console.WriteLine("Chef de rang : le groupe " + group.IdCustomer + " sont installés à la table " + group.Table.IdTable);
 
             group.StateGroup = "waiting";
 
@@ -81,7 +81,7 @@ namespace Rattrapage_MCI.Model
 
             Move("Cartes", "table");
 
-            Console.WriteLine("Voic la carte des menus");
+            Console.WriteLine("Chef de rang : Voici la carte des menus");
 
             group.StateGroup = "ordering";
 
@@ -97,7 +97,7 @@ namespace Rattrapage_MCI.Model
             Order order = new Order(group);
 
             group.StateGroup = "waiting";
-            Console.WriteLine("J'ai pris les commandes de la table " + group.Table.IdTable);
+            Console.WriteLine("Chef de rang : J'ai pris les commandes du groupe " + group.IdCustomer);
 
             //Reprendre les menus des clients et les reposer
             ReturnMenu(group);
@@ -119,10 +119,10 @@ namespace Rattrapage_MCI.Model
         //Reprendre les menus des clients et les reposer dans la pile des cartes (utilisé dans la méthode Take Order)
         public void ReturnMenu(CustomerGroup group)
         {
-            Console.WriteLine("Je reprend la carte des menus");
+            Console.WriteLine("Chef de rang : Je reprend la carte des menus");
             Move("Table", "Cartes");
             Room.Instance.Card.CardQuantity++;
-            Console.WriteLine("nombre de cartes " + Room.Instance.Card.CardQuantity);
+            Console.WriteLine("nombre de cartes dans le stockage : " + Room.Instance.Card.CardQuantity);
 
         }
 
@@ -134,14 +134,14 @@ namespace Rattrapage_MCI.Model
             group.Table.NeedCleaning = false;
             group.Table.Occupied = false;
             group.CanbeDeleted = true;
-            Console.WriteLine("`\n La table " + group.Table.IdTable + " est prête.");
+            Console.WriteLine("Chef de rang : La table " + group.Table.IdTable + " est prête.");
             Move("Table", "attente");
         }
 
 
         public void Move(string depart, string arrivée)
         {
-            Console.WriteLine("je me déplace de " + depart + " vers " + arrivée);
+            Console.WriteLine("Le chef de rang déplace de " + depart + " vers " + arrivée);
         }
 
 

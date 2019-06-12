@@ -52,11 +52,11 @@ namespace Rattrapage_MCI.Model
                 // Enter the listening loop.
                 while (true)
                 {
-                    Console.Write("\n Le contoire Dishes attend des plats... \n");
+                    Console.Write("\n Le comptoire Dishes attend des plats... \n");
 
                     // Perform a blocking call to accept requests.
                     TcpClient client = server.AcceptTcpClient();
-                    Console.WriteLine("\n Connected!");
+                    //Console.WriteLine("\n Connected!");
 
                     using (NetworkStream ns = client.GetStream())
                     {
