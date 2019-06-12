@@ -53,35 +53,24 @@ namespace Rattrapage_MCI_cuisine
         /// <param name="step">The step to prepare</param>
         public void PrepareStep(Recette step, Dish dish = null)
         {
-            Console.WriteLine("Cooker " + this.Id + " start step ");
-            this.IsAvailable = false;
-            //if (!this.LeaseNeededTools(step.Tools)) Console.WriteLine("Ustensiles insuffisants pour réaliser la tâche");
-            //else if (!this.LeaseNeededDevices(step.Devices)) Console.WriteLine("Appareils insuffisants pour réaliser la tâche");
-            else
+            Console.WriteLine("ChefPartie " + this.Id + " commence l'étape ");
+            IsAvailable = false;
+            
+            Console.WriteLine("Working ...");
+            Thread.Sleep(1000);
+            Console.WriteLine("Step finished");
+
+            if (dish != null)
             {
-                Console.WriteLine("Working ...");
-                Thread.Sleep((int)Math.Round(step.Time * 60000) / 60);
-                Console.WriteLine("Step finished");
-                /*this.WasherEngine.AddToolsToWash(step.Tools);
-                this.DevicesStorage.ReleaseDevices(step.Devices);*/
-
-                if (dish != null)
-                {
-                    if (dish.Recipe.BakeTime == 0)
-                    {
-                        dish.Ready = true;
-                        Console.WriteLine("Dish n° " + dish.Id + " is finished");
-                    }
-                }
-
-                this.IsAvailable = true;
+                  dish.Ready = true;
+                  Console.WriteLine("Dish n° " + dish.Id + " is finished");
             }
+
+            this.IsAvailable = true;
         }
 
         /// <summary>
         /// Lease the differents tools needed for a specific step
-        /// </summary>
-        /// <param name="tools">Tools to lease</param>
         /// <returns>True if the lease is accept else false</returns>
         private bool LeaseNeededTools(List<Outil> tools)
         {
@@ -102,29 +91,7 @@ namespace Rattrapage_MCI_cuisine
             return tools.All(tool => tool.IsAvailable);
         }
 
-        /// <summary>
-        /// Lease the differents devices needed for a specific step
-        /// </summary>
-        /// <param name="tools">Devices to lease</param>
-        /// <returns>True if the lease is accept else false</returns>
-        /*private bool LeaseNeededDevices(List<Device> devices)
-        {
-            foreach (var item in devices)
-            {
-                Stopwatch s = new Stopwatch();
-                s.Start();
-                while (s.Elapsed < TimeSpan.FromSeconds(5))
-                {
-                    if (this.DevicesStorage.LeaseDevice(item))
-                    {
-                        item.IsAvailable = true;
-                        break;
-                    }
-                }
-                s.Stop();
-            }
-            return devices.All(device => device.IsAvailable);
-        }*/
+        
     }
 }
 }

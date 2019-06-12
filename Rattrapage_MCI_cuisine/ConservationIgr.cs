@@ -6,13 +6,10 @@ using System.Threading.Tasks;
 
 namespace Rattrapage_MCI_cuisine
 {
-    class ConservationIgr
+    public enum ConservationIgr
     {
-        public enum TypeConservation
-        {
-            AMBIANT,
-            COLD,
-            FREEZE
-        }
+          AMBIANT,
+          COLD,
+          FREEZE
     }
 }

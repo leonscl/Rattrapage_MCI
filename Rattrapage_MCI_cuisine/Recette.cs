@@ -19,29 +19,14 @@ namespace Rattrapage_MCI_cuisine
         public string Name { get; set; }
 
         /// <summary>
-        /// Number of persons can eat this recipe
-        /// </summary>
-        public int Persons { get; set; }
-
-        /// <summary>
         /// Preparation time of the recipe
         /// </summary>
         public float PrepTime { get; set; }
 
         /// <summary>
-        /// Time to bake the recipe
-        /// </summary>
-        public float BakeTime { get; set; }
-
-        /// <summary>
-        /// Time to wait until you can use the preparation
-        /// </summary>
-        public float BreakTime { get; set; }
-
-        /// <summary>
         /// Type of the recipe
         /// </summary>  
-        public TypeRecette Type { get; set; }
+        public RecipeType Type { get; set; }
 
         /// <summary>
         /// List of the recipe's steps
@@ -50,7 +35,6 @@ namespace Rattrapage_MCI_cuisine
 
         public Recette()
         {
-            this.BakeTime = 0;
         }
     }
 }

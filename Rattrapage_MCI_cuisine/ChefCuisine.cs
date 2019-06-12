@@ -20,45 +20,74 @@ namespace Rattrapage_MCI_cuisine
 
         private readonly object LockCookers = new object();
 
-        public ChefCuisine(int cookers, Plongeur washer, Counter counterplate = null)
+        public ChefCuisine()
         {
-            // this.CounterPlate = counterplate;
-            this.Cookers = new List<ChefPartie>();
-            washer.StartWorking().Start();
+            Ingredient ToDoAll = new Ingredient(200, ConservationIgr.AMBIANT);
 
-            // Oven oven = new Oven();
+            Couvert fork = new Couvert(200, TypeCouvert.fourchette);
+            Couvert knife = new Couvert(200, TypeCouvert.couteau);
+            Couvert spoon = new Couvert(200, TypeCouvert.cuilliereCafe);
 
-            for (int i = 0; i <= cookers; i++)
-            {
-                this.Cookers.Add(new ChefPartie(i, washer));
-            }
+            Verre glass_entry = new Verre(50, TypeVerre.verre_champagne);
+            Verre glass_water = new Verre(50, TypeVerre.verre_eau);
+            Verre glass_wine = new Verre(50, TypeVerre.verre_vin);
+
+            Assiette plate_entry = new Assiette(50, TypeAssiette.petite);
+            Assiette plate_main = new Assiette(50, TypeAssiette.plate);
+            Assiette plate_dessert = new Assiette(50, TypeAssiette.dessert);
+            Console.WriteLine("Matériel prêt");
+
+            Plongeur plongeur = new Plongeur();
         }
 
-         public void CarryOrder(Order cmd)
+        private List<Order> liste_commande;
+        public void CarryOrder()
         {
-            foreach (var item in cmd.Plats)
-            {
-                Console.WriteLine("Ajouté un nouveau plat au threadpool");
-                ThreadPool.QueueUserWorkItem(state => PrepareDish(item));
-            }
-        } 
+            liste_commande = Kitchen.Instance;
+            this.liste_commande.First();
+
+        }
 
         /// <summary>
         /// Prepare a recipe
         /// </summary>
         /// <param name="recipe">The recipe to prepare</param>
-       /* private void PrepareDish(Dish dish)
+        private void PrepareDish(Dish dish)
         {
             Console.WriteLine("Début de la préparation du plat");
-             foreach (var step in dish.Recipe.Steps)
-            {
-                ChefPartie cooker;
-                { cooker = this.ElectCooker(); } while (cooker == null) ;
-
-                if (step.Order == dish.Recipe.Steps.Count()) cooker.PrepareStep(step, dish);
-                else cooker.PrepareStep(step);
-            }
-            if (dish.CurrentOrder.Dishes.All(o => o.Ready)) dish.CurrentOrder.Ready = true; 
+            
+            DishReady readyToEat = new DishReady();
         }
-    }*/
+
+        private ChefPartie ElectCooker()
+        {
+            lock (LockCookers)
+            {
+                foreach (var cooker in this.Cookers)
+                {
+                    if (cooker.IsAvailable) return cooker;
+                }
+                return null;
+            }
+        }
+        public void ChefCuisineWorkThread()
+        {
+            Console.WriteLine("Thread Chef Cuisine prêt");
+            while (true)
+            {
+                //récupération des commandes des groupe
+                List<Order> groupCustomer = Order.Entriees.WaitLine.Groups;
+                
+                if (groupCustomer.Count > 0)
+                {
+                    CustomerGroup group = groupCustomer.First();
+                    PlaceCustomerGroup(groupCustomer, group, Room.Instance);
+                    Room.Instance.WaitLine.Groups.Remove(group);
+                }
+
+                Thread.Sleep(2000);
+            }
+
+        }
+    }
 }

@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 
 namespace Rattrapage_MCI_cuisine
 {
-    class Assiette
+    class Program
     {
-        public Assiette(int total, TypeAssiette type)
-        {
+        static void Main(string[] args) {
+            Kitchen kitchen = Kitchen.Instance;
         }
+
     }
+}
 }

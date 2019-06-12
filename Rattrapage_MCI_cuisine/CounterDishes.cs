@@ -51,7 +51,7 @@ namespace Rattrapage_MCI_cuisine
 
 
         //Méthode pour envoier les plats prets via un TcpClient
-        public void SendDishs(List<DishReady> readyDishes)
+        public void SendDishs(DishReady readyDishes)
         {
             try
             {

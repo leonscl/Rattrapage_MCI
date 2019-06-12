@@ -6,13 +6,10 @@ using System.Threading.Tasks;
 
 namespace Rattrapage_MCI_cuisine
 {
-    class TypeRecette
+    public enum TypeRecette
     {
-        public enum RecipeType
-        {
-            ENTREE,
-            PLAT,
-            DESSERT,
-        }
+        ENTREE,
+        PLAT,
+        DESSERT,
     }
 }

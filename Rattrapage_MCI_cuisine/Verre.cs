@@ -8,5 +8,6 @@ namespace Rattrapage_MCI_cuisine
 {
     class Verre
     {
+        public Verre(int quantity, TypeVerre type) { }
     }
 }

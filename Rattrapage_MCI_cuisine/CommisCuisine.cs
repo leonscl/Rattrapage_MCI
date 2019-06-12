@@ -11,8 +11,5 @@ namespace Rattrapage_MCI_cuisine
         public void ChercheIngredient() { }
         public void EplucheLegume() { }
         public void EmmeneCommande() { }
-
-        CommisCuisine CommisCuisine1 = new CommisCuisine();
-        CommisCuisine CommisCuisine2 = new CommisCuisine();
     }
 }
