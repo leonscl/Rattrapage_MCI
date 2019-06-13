@@ -91,7 +91,7 @@ namespace Rattrapage_MCI.Model
 
                 if (freeTables.Count == 0)
                 {
-                    Console.WriteLine("Maître d'hôtel : Je suis désollé mais il n'y a plus de table libre (pas assez de place)");
+                    Console.WriteLine("Maître d'hôtel : Je suis désolé mais il n'y a plus de table libre (pas assez de place)");
                     groupCustomer.Remove(group);
                 }
                 else

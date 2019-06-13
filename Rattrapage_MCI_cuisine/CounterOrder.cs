@@ -49,11 +49,10 @@ namespace Rattrapage_MCI_cuisine
                 // Enter the listening loop.
                 while (true)
                 {
-                    Console.Write("Waiting for a connection... ");
+                    Console.WriteLine("Le comptoire des commandes attend... ");
 
                     // Perform a blocking call to accept requests.
                     TcpClient client = server.AcceptTcpClient();
-                    Console.WriteLine("\n Connected!");
 
                     MemoryStream stream1 = new MemoryStream();
 
@@ -64,10 +63,10 @@ namespace Rattrapage_MCI_cuisine
                     }
 
                     //Juste afficher mon stream jSON
-                    stream1.Position = 0;
+                    /*stream1.Position = 0;
                     StreamReader sr = new StreamReader(stream1);
                     Console.Write("JSON form of Person object: ");
-                    Console.WriteLine(sr.ReadToEnd());
+                    Console.WriteLine(sr.ReadToEnd());*/
 
                     //créer mon objet à partir de mon Json et afficher id ce la commande pour vérifier
                     DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(Order));
@@ -76,7 +75,7 @@ namespace Rattrapage_MCI_cuisine
                     Console.Write("id de la commande" + newOrder.IdOrder);
 
                     ListOrders.Add(newOrder);
-
+                    Console.WriteLine("Une commande est arrivée");
                     // Shutdown and end connection
                     client.Close();
 

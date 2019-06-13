@@ -2,14 +2,21 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Rattrapage_MCI_cuisine
 {
     class CommisCuisine
     {
-        public void ChercheIngredient() { }
-        public void EplucheLegume() { }
-        public void EmmeneCommande() { }
+        /// Prepare une étape
+        public void PrepareStep()
+        {
+            Console.WriteLine("Commis commence l'étape ");
+
+            Console.WriteLine("Etape en cours");
+            Thread.Sleep(1000);
+            Console.WriteLine("Etape finie");
+        }
     }
 }

@@ -58,8 +58,20 @@ namespace Rattrapage_MCI_cuisine
 
                 //récupérer le type des dishs et les dish (en string) pour le mettre dans une liste
                 List<string> dishes = new List<string>();
-                //dishes.Add("id order");
-                //dishes.Add("type dish");
+                dishes.Add(readyDishes.IdOrder.ToString());
+                dishes.Add(readyDishes.Nom);
+                /*switch (readyDishes.Type)
+                {
+                    case (TypeRecette.ENTREE):
+                        dishes.Add("entrees");
+                        break;
+                    case (TypeRecette.PLAT):
+                        dishes.Add("plats");
+                        break;
+                    case (TypeRecette.DESSERT):
+                        dishes.Add("desserts");
+                        break;
+                }*/
 
                 //Instanciation du TcpClient
                 TcpClient client = new TcpClient(ServerIp, Port);
@@ -70,7 +82,7 @@ namespace Rattrapage_MCI_cuisine
                     BinaryFormatter bf = new BinaryFormatter();
                     bf.Serialize(ns, dishes);
                 }
-                Console.Write("\n dish envoyé ----" + dishes[1] + " --- \n");
+                Console.WriteLine("Commande " + dishes[0] + " dish envoyé ----" + dishes[1] + " --- \n");
                 //on stope le TcpClient
                 client.Close();
 

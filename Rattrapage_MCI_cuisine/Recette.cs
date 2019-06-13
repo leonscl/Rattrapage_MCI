@@ -26,7 +26,7 @@ namespace Rattrapage_MCI_cuisine
         /// <summary>
         /// Type of the recipe
         /// </summary>  
-        public RecipeType Type { get; set; }
+        public TypeRecette Type { get; set; }
 
         /// <summary>
         /// List of the recipe's steps

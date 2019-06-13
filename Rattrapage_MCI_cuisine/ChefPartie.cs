@@ -10,68 +10,46 @@ namespace Rattrapage_MCI_cuisine
 {
     class ChefPartie
     {
-        /// <summary>
-        /// Identifier of the cooker
-        /// </summary>
+        /// Identification du chef de partie
         public int Id { get; set; }
 
-        /// <summary>
-        /// Availability of the cooker
-        /// </summary>
+        /// Disponibilité
         public bool IsAvailable { get; set; }
 
-        /// <summary>
         /// Tools manager to lease tools
-        /// </summary>
         public ToolsManager ToolsStorage { get; set; }
+        //public List<string> CounterDishes { get => counterDishes; set => counterDishes = value; }
 
-        /// <summary>
-        /// Devices manager to lease devices
-        /// </summary>
-        //public DevicesManager DevicesStorage { get; set; }
-
-        public Plongeur WasherEngine { get; set; }
-
-        
-
-        /// <summary>
-        /// Instantiate a cooker
-        /// </summary>
-        /// <param name="toolsStorage"></param>
-        public ChefPartie(int id, Plongeur washer)
+        /// instanciation du chef de de partie
+        public ChefPartie(int id)
         {
             this.Id = id;
             this.ToolsStorage = ToolsManager.GetInstance();
-           // this.DevicesStorage = DevicesManager.GetInstance();
-            this.WasherEngine = washer;
             this.IsAvailable = true;
         }
 
-        /// <summary>
-        /// Prepare a step
-        /// </summary>
-        /// <param name="step">The step to prepare</param>
-        public void PrepareStep(Recette step, Dish dish = null)
+        //private List<string> counterDishes;
+
+        public void PrepareReady(Order order)
         {
-            Console.WriteLine("ChefPartie " + this.Id + " commence l'étape ");
             IsAvailable = false;
-            
-            Console.WriteLine("Working ...");
+
+            DishReady dishReady1 = new DishReady(order.IdOrder, "entrees");
+            DishReady dishReady2 = new DishReady(order.IdOrder, "plats");
+            DishReady dishReady3 = new DishReady(order.IdOrder, "desserts");
+
+
+            Kitchen.Instance.CounterDishes.DishReadies.Add(dishReady1);
+            Kitchen.Instance.CounterDishes.DishReadies.Add(dishReady2);
+            Kitchen.Instance.CounterDishes.DishReadies.Add(dishReady3);
+
             Thread.Sleep(1000);
-            Console.WriteLine("Step finished");
 
-            if (dish != null)
-            {
-                  dish.Ready = true;
-                  Console.WriteLine("Dish n° " + dish.Id + " is finished");
-            }
-
+            Console.WriteLine("Commande prête");
             this.IsAvailable = true;
         }
 
-        /// <summary>
         /// Lease the differents tools needed for a specific step
-        /// <returns>True if the lease is accept else false</returns>
         private bool LeaseNeededTools(List<Outil> tools)
         {
             foreach (var item in tools)
@@ -94,4 +72,4 @@ namespace Rattrapage_MCI_cuisine
         
     }
 }
-}
+

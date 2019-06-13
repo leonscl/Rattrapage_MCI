@@ -8,16 +8,22 @@ namespace Rattrapage_MCI_cuisine
 {
     class Kitchen
     {
+        private ChefCuisine chefCuisine;
+
         private static Kitchen instance;
         private static readonly object padlock = new object();
 
+        private CounterOrder counterOrder;
+        private CounterPlate counterPlate;
+        private CounterDishes counterDishes;
+
         public Kitchen()
         {
-            CounterOrder counter_order = new CounterOrder();
-            CounterDishes counter_dishes = new CounterDishes();
-            CounterPlate counter_plate = new CounterPlate();
+            counterOrder = new CounterOrder();
+            counterDishes = new CounterDishes();
+            counterPlate = new CounterPlate();
 
-            ChefCuisine chefCuisine = new ChefCuisine();
+            chefCuisine = new ChefCuisine();
             Console.WriteLine("Cuisine prête");
         }
 
@@ -38,5 +44,10 @@ namespace Rattrapage_MCI_cuisine
                 return instance;
             }
         }
+
+        internal ChefCuisine ChefCuisine { get => chefCuisine; set => chefCuisine = value; }
+        internal CounterPlate CounterPlate { get => counterPlate; set => counterPlate = value; }
+        internal CounterDishes CounterDishes { get => counterDishes; set => counterDishes = value; }
+        internal CounterOrder CounterOrder { get => counterOrder; set => counterOrder = value; }
     }
 }

@@ -26,7 +26,7 @@ namespace Rattrapage_MCI_cuisine
 
         private void InitToolsManager()
         {
-            //List<Outil> allTools = new ToolProcess().ListAll();
+            List<Outil> allTools = new List<Outil>();
 
             foreach (var item in allTools)
             {
@@ -64,4 +64,4 @@ namespace Rattrapage_MCI_cuisine
         }
     }
 }
-}
+

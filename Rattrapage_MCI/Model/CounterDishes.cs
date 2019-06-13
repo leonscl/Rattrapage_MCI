@@ -25,6 +25,7 @@ namespace Rattrapage_MCI.Model
         public CounterDishes()
         {
             WaitingDishs = new List<Dish>();
+
             CounterDishesThread = new Thread(CounterDishesWorkThread);
             CounterDishesThread.Start();
         }
