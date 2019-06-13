@@ -77,7 +77,7 @@ namespace Rattrapage_MCI.Model
                 //on stope le TcpClient
                 client.Close();
                 
-                Console.Write("----------Commande" + order.IdOrder + "envoyée dans la cuisine --------- \n");
+                Console.WriteLine("----------Commande " + order.IdOrder + " envoyée dans la cuisine --------- \n");
 
             }
             catch (ArgumentNullException e)

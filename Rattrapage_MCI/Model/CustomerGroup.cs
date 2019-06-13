@@ -54,7 +54,7 @@ namespace Rattrapage_MCI.Model
         {
             try
             {
-                Console.WriteLine("Thread Group de clients n° " + IdCustomer + "initialisé");
+                Console.WriteLine("Thread Group de clients n° " + IdCustomer + " initialisé");
                 while (true)
                 {
                     switch (StateGroup)

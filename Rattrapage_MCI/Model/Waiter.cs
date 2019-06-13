@@ -28,7 +28,7 @@ namespace Rattrapage_MCI.Model
             WaiterThread = new Thread(WaiterWorkThread);
             WaiterThread.Start();
 
-            Console.WriteLine("Thread Waiter pret" + Id);
+            Console.WriteLine("Thread Waiter pret " + Id);
 
             IdTrack++;
         }
@@ -120,6 +120,7 @@ namespace Rattrapage_MCI.Model
         public void Move(string depart, string arrivée)
         {
             Console.WriteLine("Le waiter se déplace de " + depart + " vers " + arrivée);
+            Thread.Sleep(2000);
         }
 
         //getter et setter

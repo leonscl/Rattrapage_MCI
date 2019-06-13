@@ -142,6 +142,7 @@ namespace Rattrapage_MCI.Model
         public void Move(string depart, string arrivée)
         {
             Console.WriteLine("Le chef de rang déplace de " + depart + " vers " + arrivée);
+            Thread.Sleep(2000);
         }
 
 

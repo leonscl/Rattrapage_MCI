@@ -113,6 +113,7 @@ namespace Rattrapage_MCI.Model
                     TableGroupe.TheSquare.RankChief.ToDoRankChief.Add(toDo);
 
                     Console.WriteLine("Maître d'hôtel : je place mon groupe" + group.IdCustomer + "sur la table " + TableGroupe.IdTable + " avec " + TableGroupe.NumberPlace + " places.");
+                    Thread.Sleep(3000);
                 }
             }
         }

@@ -53,7 +53,7 @@ namespace Rattrapage_MCI.Model
                 // Enter the listening loop.
                 while (true)
                 {
-                    Console.Write("\n Le comptoire Dishes attend des plats... \n");
+                    Console.WriteLine(" Le comptoire Dishes attend des plats... \n");
 
                     // Perform a blocking call to accept requests.
                     TcpClient client = server.AcceptTcpClient();
@@ -65,7 +65,7 @@ namespace Rattrapage_MCI.Model
                         dishes = (List<string>)bf.Deserialize(ns);
                     }
 
-                    Console.Write("\n Des plats sont arrivés \n");
+                    Console.WriteLine(" Des plats sont arrivés \n");
                     // Shutdown and end connection
                     client.Close();
 

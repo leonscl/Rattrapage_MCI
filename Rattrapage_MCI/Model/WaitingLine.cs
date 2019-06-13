@@ -29,11 +29,15 @@ namespace Rattrapage_MCI.Model
             Console.WriteLine("Thread fille d'attente actif");
 
             CustomerGroup customer1 = new CustomerGroup();
+            Thread.Sleep(1000);
             CustomerGroup customer2 = new CustomerGroup();
+            Thread.Sleep(1000);
             CustomerGroup customer3 = new CustomerGroup();
 
             Groups.Add(customer1);
+            Thread.Sleep(2000);
             Groups.Add(customer2);
+            Thread.Sleep(2000);
             Groups.Add(customer3);
 
             Thread.Sleep(5000);
